@@ -2,12 +2,20 @@
 # -*- coding: utf-8 -*-
 
 import atx
+import time
 
 driver = atx.connect('http://localhost:8100',platform='ios')
-sid = str(driver.start_app('com.netease.onmyoji'))
-fl = open('session_id_ios', 'wb')
-fl.write(sid[16:52])
-fl.close()
-print("session id 已记录")
+driver.start_app('com.netease.onmyoji')
 
-driver.click_image('confirm.1920x1080.png', timeout=8, safe = True)
+
+driver.click_image(u'./images/confirm.1920x1080.png', timeout=5, safe = True)
+driver.click(150,150)
+
+driver.click_image(u'./images/cancelAnnouncement.1920x1080.png', timeout=5, safe = True)
+time.sleep(10)
+
+driver.click_image(u'./images/login.1920x1080.png', timeout=10, safe = True)
+
+time.sleep(2)
+driver.click(150,150)
+
